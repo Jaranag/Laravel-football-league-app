@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::create('games', function (Blueprint $table) {
             $table->id();
-            $table->int('local-team_id')->references('id')->on('teams');
-            $table->int('away-team_id')->references('id')->on('teams');
-            $table->int('local_goals');
-            $table->int('away_goals');
+            $table->integer('local-team_id')->references('id')->on('teams');
+            $table->integer('away-team_id')->references('id')->on('teams');
+            $table->integer('local_goals');
+            $table->integer('away_goals');
             $table->date('date');
             $table->timestamps();
         });
