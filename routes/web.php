@@ -21,15 +21,17 @@ use App\Http\Controllers\GameController;
 
 Route::get('/', [TeamController::class, 'index'])->name('teams.index');
 Route::get('/teams', [TeamController::class, 'index'])->name('teams.index');
-Route::get('/teams/show/{id}', [TeamController::class, 'show'])->name('teams.show');
 
 Route::get('/teams/create', [TeamController::class, 'create'])->name('teams.create');
-Route::post('/teams', [TeamController::class, 'store'])->name('teams.store');
+Route::post('/teams/create', [TeamController::class, 'store'])->name('teams.store');
 
-Route::get('/teams/update/{id}', [TeamController::class, 'update'])->name('teams.update');
-Route::post('/teams/update', [TeamController::class, 'storeUpdate'])->name('teams.storeupdate');
+Route::get('/teams/{id}', [TeamController::class, 'show'])->name('teams.show');
 
-Route::delete('/teams/delete/{id}', [TeamController::class, 'delete'])->name('teams.delete');
+
+Route::get('/teams/update/{team}', [TeamController::class, 'edit'])->name('teams.edit');
+Route::patch('/teams/{team}/update', [TeamController::class, 'update'])->name('teams.update');
+
+Route::delete('/teams/{team}/delete/', [TeamController::class, 'delete'])->name('teams.delete');
 
 // Game Routes:
 
@@ -43,5 +45,3 @@ Route::get('/games/update/{id}', [GameController::class, 'update'])->name('games
 Route::post('/games/update/{id}', [GameController::class, 'update'])->name('games.update');
 
 Route::delete('/games/delete/{id}', [GameController::class, 'delete'])->name('games.delete');
-
-

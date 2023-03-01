@@ -16,8 +16,12 @@ class TeamController extends Controller
         return view('teams.create');
     }
 
+    public function edit(Team $team) {
+        return view('teams.update', ['team' => $team]);
+    }
+
     public function show($id) {
-        return view('teams.show{$id}', ['team' => Team::find($id)]);
+        return view('teams.show', ['team' => Team::findOrFail($id)]);
     }
 
     public function store(Request $request) {
@@ -26,22 +30,21 @@ class TeamController extends Controller
         $newTeam->coach = $request->coach;
         $newTeam->stadium = $request->stadium;
         $newTeam->save();
-        redirect(route('teams.index'));
+        return to_route('teams.index');
     }
 
-    public function update(Request $request, $id) {
-        $teamToUpdate = Team::find($id);
-        $teamToUpdate->name = $request->name;
-        $teamToUpdate->coach = $request->coach;
-        $teamToUpdate->stadium = $request->stadium;
-        $teamToUpdate->save();
-        redirect('/');
+    public function update(Request $request, Team $team) {
+        $team->name = $request->input('name');
+        $team->coach = $request->input('coach');
+        $team->stadium = $request->input('stadium');
+        $team->save();
+        session()->flash('status', 'Team Updated!');
+        return to_route('teams.show', $team->id);
     }
 
-    public function delete($id) {
-        $teamToDelete = Team::find($id);
-        $teamToDelete->delete();
-        redirect('/');
+    public function delete(Team $team) {
+        $team->delete();
+        return to_route('teams.index');
     }
 
 
