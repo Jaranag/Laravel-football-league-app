@@ -9,17 +9,24 @@ use App\Models\Team;
 class TeamController extends Controller
 {
     public function index() {
-        $teams = Team::get();
-        return view('teams.index', $teams);
+        return view('teams.index', ['teams' => Team::get()]);
     }
 
-    public function create(Request $request) {
+    public function create() {
+        return view('teams.create');
+    }
+
+    public function show($id) {
+        return view('teams.show{$id}', ['team' => Team::find($id)]);
+    }
+
+    public function store(Request $request) {
         $newTeam = new Team;
         $newTeam->name = $request->name;
         $newTeam->coach = $request->coach;
         $newTeam->stadium = $request->stadium;
         $newTeam->save();
-        redirect('/');
+        redirect(route('teams.index'));
     }
 
     public function update(Request $request, $id) {
