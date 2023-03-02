@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'teams')
+@section('title', 'Teams')
 
 @section('content')
 <div class="min-h-screen container flex flex-col ">
