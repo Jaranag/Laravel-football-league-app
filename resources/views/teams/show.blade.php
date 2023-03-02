@@ -1,4 +1,5 @@
 @extends('layouts.app')
+@section('title', '{{$team->name}}')
 
 @section('content')
 <a href="{{ route('teams.index') }}">

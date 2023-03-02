@@ -1,4 +1,5 @@
 @extends('layouts.app')
+@section('title', 'Edit: {{$team->name}}')
 
 @section('content')
 <div class="min-h-screen py-6 flex flex-col justify-center sm:py-12">

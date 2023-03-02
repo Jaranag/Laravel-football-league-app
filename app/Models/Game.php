@@ -11,4 +11,12 @@ class Game extends Model
 {
     use HasFactory;
 
+
+    public function local_team() {
+        return $this->belongsTo(Team::class);
+    }
+
+    public function away_team() {
+        return $this->belongsTo(Team::class);
+    }
 }
