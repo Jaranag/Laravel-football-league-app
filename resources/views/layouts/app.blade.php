@@ -14,13 +14,7 @@
     </head>
     <body class="antialiased">
         @include('partials.header')
-
-            @if (session('status'))
-                <div class="status">
-                    {{ session('status') }}
-                </div>
-            @endif
-            
+        @include('partials.session')  
         @yield('content')
         @include('partials.footer')
     </body>
