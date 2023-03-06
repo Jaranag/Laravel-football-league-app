@@ -2,46 +2,33 @@
 @section('title', 'Teams')
 
 @section('content')
-<div class="min-h-screen container justify-center">
-
-    <!-- component -->
-    <a href="{{ route('teams.create') }}">
-        <div class="relative mt-5 flex flex-col md:flex-row md:space-x-5 space-y-3 md:space-y-0 rounded-xl shadow-lg p-3 max-w-xs md:max-w-3xl mx-auto border border-white bg-white">
-            <div class="w-full h-30 md:w-1/3 bg-white grid place-items-center">
-            </div>
-            <div class="w-full md:w-2/3 bg-white flex flex-col space-y-2 p-3">
-                <h3 class="font-black text-gray-800 md:text-3xl text-xl"></h3>
-                <p class="md:text-lg text-gray-500 text-base">Create new team</p>
-                <p class="text-xl font-black text-gray-800">
-                </p>
-            </div>
+<section class="min-h-screen bg-white ">
+    <div class="container px-6 py-10 mx-auto">
+        <div class="flex justify-center space-between">
+            <h1 class="text-3xl font-semibold text-gray-800 capitalize lg:text-4xl ">List of teams:                              </h1>
+            
         </div>
-    </a>
-
-    @foreach ($teams as $team)
-
-    <article class="rounded-xl border border-gray-700 bg-gray-800 p-4">
-        <a href="{{ route('teams.show', $team) }}">
-            <div class="flex items-center gap-4">
-                <img alt="Team crest" src="{{ asset($team->image_path) }}" class="h-16 w-16 rounded-full object-cover" />
-                <div>
-                    <h3 class="text-lg font-medium text-white">{{ $team->name }}</h3>
+        <a href="{{ route('teams.create') }}">
+            <button type="button" class="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">
+                Create a new Team!
+            </button>
+        </a>
+        @foreach ($teams as $team)
+        <div class="grid grid-cols-1 gap-8 mt-8 md:mt-16 md:grid-cols-2">
+            <div class="lg:flex">
+                <a href="{{ route('teams.show', $team) }}">
+                    <img  class="object-cover w-full h-56 rounded-lg lg:w-64" alt="Team crest" src="{{ asset($team->image_path) }}">
+                </a>
+                <div class="flex flex-col justify-between py-6 lg:mx-6">
+                    <a href="{{ route('teams.show', $team) }}" class="text-4xl font-semibold text-gray-800 hover:underline  ">
+                        {{ $team->name }}
+                    </a>
+                    <span class="text-sm text-gray-500 ">Coach: {{ $team->coach }}</span>
+                    <span class="text-sm text-gray-500 ">Stadium: {{ $team->stadium }}</span>
                 </div>
             </div>
-        </a>
-        <ul class="mt-4 space-y-2">
-            <li>
-                <strong class="font-medium text-white">Coach: </strong>
-                <p class="mt-1 text-xs font-medium text-gray-300">{{ $team->coach }}</p>
-            </li>
-        </ul>
-        <ul class="mt-4 space-y-2">
-            <li>
-                <strong class="font-medium text-white">Stadium: </strong>
-                <p class="mt-1 text-xs font-medium text-gray-300">{{ $team->stadium }}</p>
-            </li>
-        </ul>
-    </article>
-    @endforeach
-</div>
+        </div>
+        @endforeach
+    </div>
+</section>
 @endsection
