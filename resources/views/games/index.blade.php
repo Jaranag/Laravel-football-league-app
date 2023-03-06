@@ -28,12 +28,15 @@
             <div class="w-full md:w-2/3 bg-white flex flex-col space-y-2 p-3">
                 <h3 class="font-black text-gray-800 md:text-3xl text-xl">{{ $game->local_team->name }}: </h3>
                 <p class="md:text-lg text-gray-500 text-base">{{ $game->local_goals }}</p>
+                <img src="{{ asset($game->local_team->image_path) }}" alt="local crest">
             </div>
             <div class="w-full md:w-2/3 bg-white flex flex-col space-y-2 p-3">
                 <h3 class="font-black text-gray-800 md:text-3xl text-xl">{{ $game->away_team->name }}: </h3>
                 <p class="md:text-lg text-gray-500 text-base">{{ $game->away_goals }}</p>
             </div>
             <p class="md:text-lg text-gray-500 text-base">Date: {{ $game->date }} - {{ $game->time }}</p>
+            <p class="md:text-lg text-gray-500 text-base">Stadium: {{ $game->local_team->stadium }}</p>
+
         </div>
     </a>
 
