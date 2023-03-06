@@ -22,6 +22,10 @@
                                     <option value="{{$team->id}}">{{$team->name}}</option>
                                 @endforeach
                                 </select>
+                                @error('local_team')
+                                    <br>
+                                    <small class="text-red">{{ $message }}</small>
+                                @enderror
                             </div>
                             <div class="relative">
                                 <label for="away_team">Away Team</label>
@@ -30,14 +34,26 @@
                                     <option value="{{$team->id}}">{{$team->name}}</option>
                                 @endforeach
                                 </select>
+                                @error('away_team')
+                                    <br>
+                                    <small class="text-red">{{ $message }}</small>
+                                @enderror
                             </div>
                             <div class="relative">
                                 <input required autocomplete="off" id="date" name="date" type="date" class="peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:borer-rose-600" placeholder="01-01-2001" />
                                 <label class="absolute left-0 -top-3.5 text-gray-600 text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-440 peer-placeholder-shown:top-2 transition-all peer-focus:-top-3.5 peer-focus:text-gray-600 peer-focus:text-sm">Date</label>
+                                @error('date')
+                                    <br>
+                                    <small class="text-red">{{ $message }}</small>
+                                @enderror
                             </div>
                             <div class="relative">
                                 <input required autocomplete="off" id="time" name="time" type="time" class="peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:borer-rose-600" placeholder="19:30" />
                                 <label class="absolute left-0 -top-3.5 text-gray-600 text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-440 peer-placeholder-shown:top-2 transition-all peer-focus:-top-3.5 peer-focus:text-gray-600 peer-focus:text-sm">Time</label>
+                                @error('time')
+                                    <br>
+                                    <small class="text-red">{{ $message }}</small>
+                                @enderror
                             </div>
                             <div class="relative">
                                 <button type="submit" class="bg-blue-500 text-white rounded-md px-2 py-1">Create new game</button>

@@ -1,7 +1,9 @@
 @extends('layouts.app')
-@section('title', '{{$team->name}}')
+@section('title', 'Team')
 
 @section('content')
+
+
 <a href="{{ route('teams.index') }}">
     <div class="relative mt-5 flex flex-col md:flex-row md:space-x-5 space-y-3 md:space-y-0 rounded-xl shadow-lg p-3 max-w-xs md:max-w-3xl mx-auto border border-white bg-white">
         <div class="w-full h-30 md:w-1/3 bg-white grid place-items-center">
@@ -22,7 +24,7 @@
     <button type="submit" class="text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">DELETE! </button>
 </form>
 
-@foreach ($team->games as $game)
+@foreach ($games as $game)
 
 <a href="">
     <div class="relative mt-5 flex flex-col md:flex-row md:space-x-5 space-y-3 md:space-y-0 rounded-xl shadow-lg p-3 max-w-xs md:max-w-3xl mx-auto border border-white bg-white">
