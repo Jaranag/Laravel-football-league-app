@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Team;
+use App\Models\Game;
+
 
 
 class TeamController extends Controller
@@ -21,15 +23,28 @@ class TeamController extends Controller
     }
 
     public function show(Team $team) {
-        $games = Team::find($team)->games;
+        // $games = Game::get()->where([
+        //     ['local_team_id', $team->id],
+        //     ['away_team_id', $team->id],
+        // ]);
+        // $games = Game::where('local_team_id', $team->id)->orWhere('away_team_id', $team->id);
+        $games = array();
+        $allGames = Game::get();
+
+        foreach($allGames as $game) {
+            if (($game->local_team_id == $team->id) || ($game->away_team_id == $team->id))  {
+                array_push($games, $game);
+            }
+        }
+
         return view('teams.show', ['team' => $team, 'games' => $games]);
     }
 
     public function store(Request $request) {
         $request->validate([
-            'name' => 'required|unique:teams|max:20',
-            'coach' => 'required|max:40',
-            'stadium' => 'required|max30'
+            'name' => ['required','unique:teams','max:20'],
+            'coach' =>  ['required','max:40'],
+            'stadium' => ['required','max:30']
         ]);
         $newTeam = new Team;
         $newTeam->name = $request->name;
@@ -43,9 +58,9 @@ class TeamController extends Controller
 
     public function update(Request $request, Team $team) {
         $request->validate([
-            'name' => 'required|unique:teams|max:20',
-            'coach' => 'required|max:40',
-            'stadium' => 'required|max30'
+            'name' => ['required','unique:teams','max:20'],
+            'coach' =>  ['required','max:40'],
+            'stadium' => ['required','max:30']
         ]);
         $team->name = $request->input('name');
         $team->coach = $request->input('coach');

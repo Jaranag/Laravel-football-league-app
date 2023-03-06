@@ -28,11 +28,12 @@ class GameController extends Controller
     public function store(Request $request) {
 
         $request->validate([
-            'local_team' => 'required|different:away_team_id',
-            'away_team' => 'required|different:local_team_id',
+            'local_team' => ['required','different:away_team'],
+            'away_team' => ['required','different:local_team'],
             'date' => 'required',
             'time' => 'required'
         ]);
+
 
         $newGame = new Game;
         $newGame->local_team_id = $request->local_team;
@@ -47,8 +48,8 @@ class GameController extends Controller
 
     public function update(Request $request, Game $game) {
         $request->validate([
-            'local_goals' => 'required|integer|between:0,20',
-            'away_goals' => 'required|integer|between:0,20'
+            'local_goals' => ['required','integer|between:0,20'],
+            'away_goals' => ['required','integer|between:0,20'],
         ]);
         $game->local_goals = $request->input('local_goals');
         $game->away_goals = $request->input('away_goals');

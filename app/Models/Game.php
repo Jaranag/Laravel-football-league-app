@@ -13,10 +13,10 @@ class Game extends Model
 
 
     public function local_team() {
-        return $this->belongsTo(Team::class);
+        return $this->belongsTo(Team::class, 'local_team_id');
     }
 
     public function away_team() {
-        return $this->belongsTo(Team::class);
+        return $this->belongsTo(Team::class, 'away_team_id');
     }
 }
