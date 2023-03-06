@@ -3,6 +3,7 @@
 
 @section('content')
 <div class="min-h-screen container flex flex-col ">
+
     <!-- component -->
     <a href="{{ route('teams.create') }}">
         <div class="relative mt-5 flex flex-col md:flex-row md:space-x-5 space-y-3 md:space-y-0 rounded-xl shadow-lg p-3 max-w-xs md:max-w-3xl mx-auto border border-white bg-white">
@@ -19,7 +20,7 @@
 
     @foreach ($teams as $team)
 
-    <a href="/teams/{{$team->id}}">
+    <a href="{{ route('teams.show', $team) }}">
         <div class="relative mt-5 flex flex-col md:flex-row md:space-x-5 space-y-3 md:space-y-0 rounded-xl shadow-lg p-3 max-w-xs md:max-w-3xl mx-auto border border-white bg-white">
             <div class="w-full h-30 md:w-1/3 bg-white grid place-items-center">
             </div>

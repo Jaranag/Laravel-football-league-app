@@ -25,7 +25,7 @@ Route::get('/teams', [TeamController::class, 'index'])->name('teams.index');
 Route::get('/teams/create', [TeamController::class, 'create'])->name('teams.create');
 Route::post('/teams/create', [TeamController::class, 'store'])->name('teams.store');
 
-Route::get('/teams/{id}', [TeamController::class, 'show'])->name('teams.show');
+Route::get('/teams/{team}', [TeamController::class, 'show'])->name('teams.show');
 
 
 Route::get('/teams/update/{team}', [TeamController::class, 'edit'])->name('teams.edit');
@@ -36,12 +36,13 @@ Route::delete('/teams/{team}/delete/', [TeamController::class, 'delete'])->name(
 // Game Routes:
 
 Route::get('/games', [GameController::class, 'index'])->name('games.index');
-Route::get('/games/show/{id}', [GameController::class, 'show'])->name('games.show');
 
 Route::get('/games/create', [GameController::class, 'create'])->name('games.create');
 Route::post('/games', [GameController::class, 'store'])->name('games.store');
 
-Route::get('/games/update/{id}', [GameController::class, 'update'])->name('games.update');
-Route::post('/games/update/{id}', [GameController::class, 'update'])->name('games.update');
+Route::get('/games/{game}', [GameController::class, 'show'])->name('games.show');
 
-Route::delete('/games/delete/{id}', [GameController::class, 'delete'])->name('games.delete');
+Route::get('/games/update/{game}', [GameController::class, 'edit'])->name('games.edit');
+Route::post('/games/{game}/update', [GameController::class, 'update'])->name('games.update');
+
+Route::delete('/games/{game}/delete', [GameController::class, 'delete'])->name('games.delete');
