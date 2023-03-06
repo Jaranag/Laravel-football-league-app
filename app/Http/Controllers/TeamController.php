@@ -44,12 +44,20 @@ class TeamController extends Controller
         $request->validate([
             'name' => ['required','unique:teams','max:20'],
             'coach' =>  ['required','max:40'],
-            'stadium' => ['required','max:30']
+            'stadium' => ['required','max:30'],
+            'image' => ['mimes:jpg,png,jpeg|max:5048']
         ]);
         $newTeam = new Team;
         $newTeam->name = $request->name;
         $newTeam->coach = $request->coach;
         $newTeam->stadium = $request->stadium;
+        if($request->image) {
+            $newImageName = 'images/' . time() . '-' . $request->name . '.' . $request->image->extension();
+            $newTeam->image_path = $newImageName;
+            $request->image->move(public_path('images'), $newImageName);
+        } else {
+            $newTeam->image_path = 'defaults/5042057-default.png';
+        }
         $newTeam->save();
         session()->flash('status', 'Team Created!');
 

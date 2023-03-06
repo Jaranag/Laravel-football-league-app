@@ -12,32 +12,41 @@
                 <div>
                     <h1 class="text-2xl font-semibold">Submit your new team!</h1>
                 </div>
-                <form action="{{ route('teams.store') }}" method="post">
-                @csrf
+                <form action="{{ route('teams.store') }}" method="post" enctype="multipart/form-data">
+                    @csrf
                     <div class="divide-y divide-gray-200">
                         <div class="py-8 text-base leading-6 space-y-4 text-gray-700 sm:text-lg sm:leading-7">
+                            <div class="relative">
+                                <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="file_input">Team crest</label>
+                                <input name="image" class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="image" type="file">
+                                <p class="mt-1 text-sm text-gray-500 dark:text-gray-300" id="file_input_help">JPEG, PNG or JPG (MAX. 5048kb).</p>
+                                @error('name')
+                                <br>
+                                <small class="text-red">{{ $message }}</small>
+                                @enderror
+                            </div>
                             <div class="relative">
                                 <input required autocomplete="off" id="name" name="name" type="text" class="peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:borer-rose-600" placeholder="Team" />
                                 <label for="name" class="absolute left-0 -top-3.5 text-gray-600 text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-440 peer-placeholder-shown:top-2 transition-all peer-focus:-top-3.5 peer-focus:text-gray-600 peer-focus:text-sm">Team</label>
                                 @error('name')
-                                    <br>
-                                    <small class="text-red">{{ $message }}</small>
+                                <br>
+                                <small class="text-red">{{ $message }}</small>
                                 @enderror
                             </div>
                             <div class="relative">
                                 <input required autocomplete="off" id="coach" name="coach" type="text" class="peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:borer-rose-600" placeholder="Coach" />
                                 <label for="coach" class="absolute left-0 -top-3.5 text-gray-600 text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-440 peer-placeholder-shown:top-2 transition-all peer-focus:-top-3.5 peer-focus:text-gray-600 peer-focus:text-sm">Coach</label>
                                 @error('coach')
-                                    <br>
-                                    <small class="text-red">{{ $message }}</small>
+                                <br>
+                                <small class="text-red">{{ $message }}</small>
                                 @enderror
                             </div>
                             <div class="relative">
                                 <input required autocomplete="off" id="stadium" name="stadium" type="text" class="peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:borer-rose-600" placeholder="Stadium" />
                                 <label for="stadium" class="absolute left-0 -top-3.5 text-gray-600 text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-440 peer-placeholder-shown:top-2 transition-all peer-focus:-top-3.5 peer-focus:text-gray-600 peer-focus:text-sm">Stadium</label>
                                 @error('stadium')
-                                    <br>
-                                    <small class="text-red">{{ $message }}</small>
+                                <br>
+                                <small class="text-red">{{ $message }}</small>
                                 @enderror
                             </div>
                             <div class="relative">
