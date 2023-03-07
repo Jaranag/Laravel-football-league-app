@@ -34,7 +34,6 @@ class GameController extends Controller
             'time' => 'required'
         ]);
 
-
         $newGame = new Game;
         $newGame->local_team_id = $request->local_team;
         $newGame->away_team_id = $request->away_team;
@@ -48,8 +47,8 @@ class GameController extends Controller
 
     public function update(Request $request, Game $game) {
         $request->validate([
-            'local_goals' => ['required','integer|between:0,20'],
-            'away_goals' => ['required','integer|between:0,20'],
+            'local_goals' => ['required','integer','between:0,20'],
+            'away_goals' => ['required','integer','between:0,20'],
         ]);
         $game->local_goals = $request->input('local_goals');
         $game->away_goals = $request->input('away_goals');
@@ -61,6 +60,6 @@ class GameController extends Controller
     public function delete(Game $game) {
         $game->delete();
         session()->flash('status', 'Game Deleted!');
-        return to_route('teams.index');
+        return to_route('games.index');
     }
 }

@@ -28,7 +28,7 @@ Route::post('/teams/create', [TeamController::class, 'store'])->name('teams.stor
 Route::get('/teams/{team}', [TeamController::class, 'show'])->name('teams.show');
 
 
-Route::get('/teams/update/{team}', [TeamController::class, 'edit'])->name('teams.edit');
+Route::get('/teams/edit/{team}', [TeamController::class, 'edit'])->name('teams.edit');
 Route::patch('/teams/{team}/update', [TeamController::class, 'update'])->name('teams.update');
 
 Route::delete('/teams/{team}/delete/', [TeamController::class, 'delete'])->name('teams.delete');

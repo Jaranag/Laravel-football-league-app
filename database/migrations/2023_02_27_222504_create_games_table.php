@@ -19,7 +19,6 @@ return new class extends Migration
             $table->integer('away_goals')->default(0);
             $table->date('date');
             $table->time('time');
-
             $table->timestamps();
         });
     }
