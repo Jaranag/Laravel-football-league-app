@@ -14,9 +14,7 @@ class Team extends Model
 
     public function games(): hasMany
     {
-        return $this->hasMany(Game::class, 'id', 'local_team');
-        return $this->hasMany(Game::class, 'id', 'away_team');
-
-
+        return $this->hasMany(Game::class, 'local_team_id', 'id' );
+        //  $this->hasMany(Game::class, 'away_team_id', 'id');
     }
 }

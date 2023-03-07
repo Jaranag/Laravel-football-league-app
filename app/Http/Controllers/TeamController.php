@@ -23,20 +23,16 @@ class TeamController extends Controller
     }
 
     public function show(Team $team) {
-        // $games = Game::get()->where([
-        //     ['local_team_id', $team->id],
-        //     ['away_team_id', $team->id],
-        // ]);
-        // $games = Game::where('local_team_id', $team->id)->orWhere('away_team_id', $team->id);
-        $games = array();
-        $allGames = Game::get();
+        // $games = array();
+        // $allGames = Game::get();
 
-        foreach($allGames as $game) {
-            if (($game->local_team_id == $team->id) || ($game->away_team_id == $team->id))  {
-                array_push($games, $game);
-            }
-        }
-
+        // foreach($allGames as $game) {
+        //     if (($game->local_team_id == $team->id) || ($game->away_team_id == $team->id))  {
+        //         array_push($games, $game);
+        //     }
+        // }
+        $games = $team->games();
+        // dd($games);
         return view('teams.show', ['team' => $team, 'games' => $games]);
     }
 
