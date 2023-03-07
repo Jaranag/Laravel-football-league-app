@@ -12,15 +12,11 @@ class Team extends Model
 {
     use HasFactory;
 
-    public function local_games(): hasMany
+    public function games(): hasMany
     {
         return $this->hasMany(Game::class, 'id', 'local_team');
-
-    }
-
-    public function away_games(): hasMany
-    {
         return $this->hasMany(Game::class, 'id', 'away_team');
+
 
     }
 }

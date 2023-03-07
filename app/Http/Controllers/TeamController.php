@@ -19,7 +19,7 @@ class TeamController extends Controller
     }
 
     public function edit(Team $team) {
-        return view('teams.update', ['team' => $team]);
+        return view('teams.edit', ['team' => $team]);
     }
 
     public function show(Team $team) {
@@ -66,7 +66,7 @@ class TeamController extends Controller
 
     public function update(Request $request, Team $team) {
         $request->validate([
-            'name' => ['required','unique:teams','max:20'],
+            'name' => ['required','max:20'],
             'coach' =>  ['required','max:40'],
             'stadium' => ['required','max:30']
         ]);
